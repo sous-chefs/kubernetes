@@ -1,6 +1,6 @@
 # k8s
 
-Resources for deploying various Kubernetes entities, these resources are designed to be ran on the kubernetes master but can be ran anywhere that has access to a kubernetes api. These resources utilize the kubeclient ruby gem and run against the v1beta1 api.
+Resources for deploying various Kubernetes entities, these resources are designed to be ran on the kubernetes master but can be ran anywhere that has access to a kubernetes api by changing the `['kube']['master']['ip']` attribute. These resources utilize the kubeclient ruby gem and run against the v1beta1 api.
 
 Currently supported resources:
 
@@ -12,10 +12,9 @@ Currently supported resources:
 To use these resources you should already have a kubernetes cluster built out and able to hit the api. If your master is not accepting api requests on its external ip, try changing the bind address on your kubernetes configs.
 
 # Attributes
-
-##### `['kube']['master']['ip']` - the address used when contacting the kubernetes api
-##### `['kube']['master']['port']` - the port that will be used whe contacting the kubernetes api
-##### `['kube']['client_version']` - the version of the kubeclient gem to install
+  * `['kube']['master']['ip']` - the address used when contacting the kubernetes api
+  * `['kube']['master']['port']` - the port that will be used whe contacting the kubernetes api
+  * `['kube']['client_version']` - the version of the kubeclient gem to install
 
 # Libraries
 The resources in this cookbook are built off of the `K8s::Client` helper library, to include this library add `include K8s::Client` to your recipe.
