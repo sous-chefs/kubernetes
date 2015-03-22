@@ -15,23 +15,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-actions :create, :destroy
-default_action :create
-
-provides :kube_service
-
-# how kubernetes will identify the service
-attribute :id, name_attribute: true, kind_of: String
-
-# the port that the service will be listening on
-attribute :port, required: true, kind_of: Fixnum
-
-# the internal port that kubernetes will route from the service to the container
-attribute :container_port, kind_of: Fixnum
-
-# labels added to the service itself
-attribute :labels, default: {}, kind_of: [Hash,Array,String]
-
-# labels that the service will use to select which containers to route to
-attribute :selector, default: {}, kind_of: [Hash,Array,String]
