@@ -18,16 +18,22 @@
 
 require 'spec_helper'
 
-describe 'k8s::default' do
+describe 'k8s::node' do
 
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'starts and enables the kubernetes node services' do
 
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
     end
 
-    it 'installs kubeclient gem' do
-      expect(chef_run).to install_chef_gem('kubeclient')
+    it 'starts and enables the proxy' do
+      expect(chef_run).to start_service('kube-proxy')
+      expect(chef_run).to enable_service('kube-proxy')
+    end
+
+    it 'starts and enables the kubelet' do
+      expect(chef_run).to start_service('kubelet')
+      expect(chef_run).to enable_service('kubelet')
     end
 
   end

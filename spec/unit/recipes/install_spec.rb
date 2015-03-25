@@ -18,16 +18,20 @@
 
 require 'spec_helper'
 
-describe 'k8s::default' do
+describe 'k8s::install' do
 
-  context 'When all attributes are default, on an unspecified platform' do
+  context 'installs the needed packages for kubernetes' do
 
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
     end
 
-    it 'installs kubeclient gem' do
-      expect(chef_run).to install_chef_gem('kubeclient')
+    it 'installs docker' do
+      expect(chef_run).to install_package('docker')
+    end
+
+    it 'installs kubernetes' do
+      expect(chef_run).to install_package('kubernetes')
     end
 
   end
