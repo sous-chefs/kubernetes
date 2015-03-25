@@ -24,6 +24,15 @@ The resources in this cookbook are built off of the `K8s::Client` helper library
 #### default.rb
 Installs the kubeclient ruby gem for interacting with the Kubernetes api
 
+#### install.rb
+Installs the needed packages for kubernetes - *currently only supported on RHEL 7*
+
+#### master.rb
+Ensures the needed services are started/enabled for a kubernetes master
+
+#### node.rb
+Ensures the needed services are started/enabled for a kubernetes node/minion
+
 # Resources and Providers 
 
 #### Kubernetes Pod (`kube_pod`)
