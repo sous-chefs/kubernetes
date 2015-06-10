@@ -5,8 +5,8 @@ describe 'k8s::default' do
   # Serverspec examples can be found at
   # http://serverspec.org/resource_types.html
   
-  it 'does something' do
-    skip 'Replace this with meaningful tests'
+  it 'installs the kubeclient' do
+    expect(package('kubeclient')).to be_installed
   end
 
 end

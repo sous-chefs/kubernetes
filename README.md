@@ -8,29 +8,26 @@ Currently supported resources:
   * Kubernetes Replication Controller (`kube_replication_controller`)
   * Kubernetes Service (`kube_service`)
 
-# Prerequisites
-To use these resources you should already have a kubernetes cluster built out and able to hit the api. If your master is not accepting api requests on its external ip, try changing the bind address on your kubernetes configs.
+Currently supported platforms:
+  * Redhat Enterprise Linux 7.x
 
 # Attributes
   * `['k8s']['master']['ip']` - the address used when contacting the kubernetes api
   * `['k8s']['master']['port']` - the port that will be used whe contacting the kubernetes api
   * `['k8s']['client_version']` - the version of the kubeclient gem to install
 
-# Libraries
-The resources in this cookbook are built off of the `K8s::Client` helper library, to include this library add `include K8s::Client` to your recipe.
-
 # Recipes
 
-#### default.rb
+#### default
 Installs the kubeclient ruby gem for interacting with the Kubernetes api
 
-#### install.rb
-Installs the needed packages for kubernetes - *currently only supported on RHEL 7*
+#### install
+Installs the needed packages for kubernetes
 
-#### master.rb
+#### master
 Ensures the needed services are started/enabled for a kubernetes master
 
-#### node.rb
+#### node
 Ensures the needed services are started/enabled for a kubernetes node/minion
 
 # Resources and Providers 
