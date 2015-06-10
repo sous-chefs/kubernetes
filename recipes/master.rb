@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+include_recipe "selinux::disabled"
 include_recipe "#{cookbook_name}::install"
 
 %w[etcd kube-apiserver kube-controller-manager kube-scheduler].each do |service|
@@ -24,7 +24,7 @@ include_recipe "#{cookbook_name}::install"
   end
 end
 
-cookbook_file '/etc/kubernetes/apiserver' do
-  source 'apiserver'
-  notifies :restart, 'service[kube-apiserver]', :immediately
+template '/etc/kubernetes/apiserver' do
+    source 'apiserver.erb'
+    notifies :restart, 'service[kube-apiserver]', :immediately
 end

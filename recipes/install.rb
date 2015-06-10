@@ -16,9 +16,22 @@
 # limitations under the License.
 #
 
-%w[docker kubernetes].each do |pkg|
-  package pkg do
-    action :install
-    options "--enablerepo=rhui-REGION-rhel-server-extras"
-  end
+include_recipe "#{cookbook_name}::default"
+
+execute "yum-config-manager --enable rhui-REGION-rhel-server-extras"
+
+package 'docker' do
+  version '1.6.0-11.el7'
+end
+
+package 'kubernetes' do
+  version '0.15.0-0.3.git0ea87e4.el7'
+end
+
+package 'etcd' do
+  version '2.0.9-2.el7'
+end
+
+package 'flannel' do
+  version '0.2.0-7.el7'
 end

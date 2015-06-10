@@ -6,11 +6,29 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.5
-
+  - name: rhel-7.1
+    driver:
+      image_id: ami-4dbf9e7d
+      username: ec2-user
+      name: ec2
+      aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+      aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+      aws_ssh_key_id: aelizondo
+      ssh_key: /Users/andree/Downloads/aelizondo.pem
+      security_group_ids: ["sg-7355ea16"]
+      region: us-west-2
+      availability_zone: us-west-2a
+      require_chef_omnibus: true
+      flavor_id: m3.medium
 suites:
   - name: default
     run_list:
       - recipe[k8s::default]
+      - recipe[k8s::master]
+      - recipe[k8s::node]
+    attributes:
+  - name: node-1
+    run_list:
+      - recipe[k8s::default]
+      - recipe[k8s::node]
     attributes:

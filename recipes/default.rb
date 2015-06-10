@@ -15,9 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe 'build-essential'
 
-chef_gem 'kubeclient' do 
+gem_package 'kubeclient' do 
   version node['k8s']['client_version']
-  compile_time true if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
   action :install
 end
