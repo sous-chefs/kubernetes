@@ -4,17 +4,20 @@ Resources for deploying various Kubernetes entities, these resources are designe
 
 Currently supported resources:
 
+  * Kubernetes Master (`kube_master`)
+  * Kubernetes Node (`kube_node`)
+
+
+Currently broken resources: (waiting on support for v1 api through kubeclient gem)
+
   * Kubernetes Pod (`kube_pod`)
   * Kubernetes Replication Controller (`kube_replication_controller`)
   * Kubernetes Service (`kube_service`)
 
-Currently supported platforms:
-  * Redhat Enterprise Linux 7.x
-
 # Attributes
-  * `['k8s']['master']['ip']` - the address used when contacting the kubernetes api
-  * `['k8s']['master']['port']` - the port that will be used whe contacting the kubernetes api
-  * `['k8s']['client_version']` - the version of the kubeclient gem to install
+  * `['kubernetes']['master']['ip']` - the address used when contacting the kubernetes api
+  * `['kubernetes']['master']['port']` - the port that will be used whe contacting the kubernetes api
+  * `['kubernetes']['client_version']` - the version of the kubeclient gem to install
 
 # Recipes
 
@@ -22,15 +25,32 @@ Currently supported platforms:
 Installs the kubeclient ruby gem for interacting with the Kubernetes api
 
 #### install
-Installs the needed packages for kubernetes
+Creates a docker service for kubernetes
 
 #### master
-Ensures the needed services are started/enabled for a kubernetes master
+Ensures the needed containers for a kubernetes master are deployed/running with proper networking setup
 
 #### node
-Ensures the needed services are started/enabled for a kubernetes node/minion
+Ensures the needed containers for a kubernetes node are in place and running
 
 # Resources and Providers 
+
+#### Kubernetes Master (`kube_master`)
+Deploy the containers needed to make a functioning Kubernetes master locally on the system. This will deploy etcd, flannel, and all needed kubernetes services.
+
+##### Actions
+  * `create` - default. setup the system as a kubernetes master
+  * `destroy` - stop all related containers
+
+#### Kubernetes Node (`kube_node`)
+Deploy the containers needed to make a functioning Kubernetes node that can attach to a remote master. This will deploy flannel and the needed kubernetes services.
+
+##### Actions
+  * `create` - default. setup the system as a kubernetes node
+  * `destroy` - stop all related containers
+
+##### Attribute Parameters
+  * `master_ip` - The ip address of your kubernetes masters
 
 #### Kubernetes Pod (`kube_pod`)
 Manage a standalone Kubernetes pod, there is no redundancy in a pod and is simply used to specify a group of containers to be jointly deployed on a host.
