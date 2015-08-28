@@ -15,9 +15,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe 'build-essential'
+# include_recipe 'build-essential'
 
-gem_package 'kubeclient' do 
-  version node['k8s']['client_version']
-  action :install
-end
+# gem_package 'kubeclient' do 
+#   version node['k8s']['client_version']
+#   action :install
+# end

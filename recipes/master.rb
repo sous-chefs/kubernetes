@@ -15,16 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "selinux::disabled"
-include_recipe "#{cookbook_name}::install"
 
-%w[etcd kube-apiserver kube-controller-manager kube-scheduler].each do |service|
-  service service do
-    action [:enable,:start]
-  end
-end
+include_recipe '::install'
 
-template '/etc/kubernetes/apiserver' do
-    source 'apiserver.erb'
-    notifies :restart, 'service[kube-apiserver]', :immediately
+kube_master 'test' do
+  action :create
+  # cidr_range for etcd
 end

@@ -21,14 +21,36 @@ platforms:
       require_chef_omnibus: true
       flavor_id: m3.medium
 suites:
-  - name: default
+  # - name: default
+  #   run_list:
+  #     - recipe[k8s::default]
+  #     - recipe[k8s::master]
+  #     - recipe[k8s::node]
+  #   attributes:
+  # - name: docker
+  #   run_list:
+  #     - recipe[k8s::docker_install]
+  #   attributes:
+  - name: decker
     run_list:
-      - recipe[k8s::default]
       - recipe[k8s::master]
-      - recipe[k8s::node]
     attributes:
-  - name: node-1
+      k8s:
+        client_version: '0.3.0'
+  - name: decker-worker
     run_list:
-      - recipe[k8s::default]
       - recipe[k8s::node]
     attributes:
+      k8s:
+        client_version: '0.3.0'
+  - name: decker-worker-2
+    run_list:
+      - recipe[k8s::node]
+    attributes:
+      k8s:
+        client_version: '0.3.0'
+#  - name: node-1
+#    run_list:
+#      - recipe[k8s::default]
+#      - recipe[k8s::node]
+#    attributes:

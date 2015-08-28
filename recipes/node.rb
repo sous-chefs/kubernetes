@@ -16,10 +16,9 @@
 # limitations under the License.
 #
 
-include_recipe "#{cookbook_name}::install"
+include_recipe "::install"
 
-%w[kube-proxy kubelet].each do |service|
-  service service do
-    action [:enable,:start]
-  end
+kube_node 'test-worker' do
+  action :create
+  master_ip '172.31.43.196'
 end

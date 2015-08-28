@@ -16,11 +16,8 @@
 # limitations under the License.
 #
 
-include_recipe '::default'
 
-include_recipe 'selinux::disabled' if node[:platform_family].eql? "rhel"
+actions :create, :destroy
 
-docker_service 'kubernetes' do
-  action [:create, :start]
-  retries 5
-end
+provides :kube_master
+
