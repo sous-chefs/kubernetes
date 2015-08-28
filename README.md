@@ -42,6 +42,13 @@ Deploy the containers needed to make a functioning Kubernetes master locally on 
   * `create` - default. setup the system as a kubernetes master
   * `destroy` - stop all related containers
 
+##### Examples
+```ruby
+kube_master 'default' do
+  action :create
+end
+```
+
 #### Kubernetes Node (`kube_node`)
 Deploy the containers needed to make a functioning Kubernetes node that can attach to a remote master. This will deploy flannel and the needed kubernetes services.
 
@@ -51,6 +58,13 @@ Deploy the containers needed to make a functioning Kubernetes node that can atta
 
 ##### Attribute Parameters
   * `master_ip` - The ip address of your kubernetes masters
+
+##### Examples
+```ruby
+kube_node 'default-worker' do
+  action :create
+end
+```
 
 #### Kubernetes Pod (`kube_pod`)
 Manage a standalone Kubernetes pod, there is no redundancy in a pod and is simply used to specify a group of containers to be jointly deployed on a host.
