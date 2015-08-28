@@ -57,7 +57,7 @@ Deploy the containers needed to make a functioning Kubernetes node that can atta
   * `destroy` - stop all related containers
 
 ##### Attribute Parameters
-  * `master_ip` - The ip address of your kubernetes masters
+  * `master_ip` - **required** The ip address of your kubernetes masters
 
 ##### Examples
 ```ruby
