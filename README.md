@@ -63,6 +63,7 @@ Deploy the containers needed to make a functioning Kubernetes node that can atta
 ```ruby
 kube_node 'default-worker' do
   action :create
+  master_ip '10.1.2.3'
 end
 ```
 
