@@ -18,7 +18,7 @@
 
 include_recipe "::install"
 
-kube_node 'test-worker' do
+kube_node 'default-worker' do
   action :create
   #master_ip '172.31.43.196'
 end

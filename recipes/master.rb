@@ -18,7 +18,6 @@
 
 include_recipe '::install'
 
-kube_master 'test' do
+kube_master 'default' do
   action :create
-  # cidr_range for etcd
 end
