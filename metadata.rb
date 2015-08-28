@@ -8,6 +8,6 @@ version          '1.0.0'
 
 depends 'build-essential', '~> 2.2.3'
 depends 'selinux', '~> 0.9.0'
-depends 'docker', ' ~> 1.0.12'
+depends 'docker', '~> 1.0.12'
 
 supports 'rhel'
