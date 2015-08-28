@@ -1,4 +1,4 @@
-# k8s
+# kubernetes
 
 Resources for deploying various Kubernetes entities, these resources are designed to be ran on the kubernetes master but can be ran anywhere that has access to a kubernetes api by changing the `['k8s']['master']['ip']` attribute. These resources utilize the kubeclient ruby gem and run against the v1beta1 api.
 
