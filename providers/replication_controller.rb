@@ -21,6 +21,7 @@ include K8s::Client
 use_inline_resources
 
 action :create do
+    Chef::Log.fatal "This resource is currently under active development and is not functioning at this time"
 
   Chef::Log.debug "checking for existing replication controller named #{new_resource.id}.."
 
