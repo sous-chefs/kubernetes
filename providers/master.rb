@@ -87,6 +87,7 @@ action :create do
   docker_service 'kubernetes' do
     bip lazy { node.run_state[:flannel][:bip] }
     mtu lazy { node.run_state[:flannel][:mtu] }
+    host ['unix:///var/run/docker.sock'] | node['docker']['hosts']
     action [:create,:start]
     notifies :run, 'docker_container[etcd]', :immediately
     notifies :run, 'docker_container[flannel]', :immediately
