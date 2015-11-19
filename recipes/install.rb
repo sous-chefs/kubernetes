@@ -21,6 +21,7 @@ include_recipe '::default'
 include_recipe 'selinux::disabled' if node[:platform_family].eql? "rhel"
 
 docker_service 'kubernetes' do
+  host ['unix:///var/run/docker.sock'] | node['docker']['hosts']
   action [:create, :start]
   retries 5
 end
