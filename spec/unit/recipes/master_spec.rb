@@ -19,9 +19,7 @@
 require 'spec_helper'
 
 describe 'k8s::master' do
-
   context 'starts and enables the kubernetes master services' do
-
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
     end
@@ -49,6 +47,5 @@ describe 'k8s::master' do
     it 'writes apiserver config' do
       expect(chef_run).to render_file('/etc/kubernetes/apiserver')
     end
-
   end
 end

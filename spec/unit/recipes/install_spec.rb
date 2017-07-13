@@ -19,9 +19,7 @@
 require 'spec_helper'
 
 describe 'k8s::install' do
-
   context 'installs the needed packages for kubernetes' do
-
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
     end
@@ -33,6 +31,5 @@ describe 'k8s::install' do
     it 'installs kubernetes' do
       expect(chef_run).to install_package('kubernetes')
     end
-
   end
 end

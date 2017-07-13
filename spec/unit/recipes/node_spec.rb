@@ -19,9 +19,7 @@
 require 'spec_helper'
 
 describe 'k8s::node' do
-
   context 'starts and enables the kubernetes node services' do
-
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
     end
@@ -35,6 +33,5 @@ describe 'k8s::node' do
       expect(chef_run).to start_service('kubelet')
       expect(chef_run).to enable_service('kubelet')
     end
-
   end
 end

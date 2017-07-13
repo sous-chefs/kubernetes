@@ -18,13 +18,12 @@
 
 module K8s
   module Client
-
     ##
     #
     #  The primary method that will return the current active client
     #
     def kube
-      @@kube ||= create_kube_client(self.kube_url,self.kube_api_version)
+      @@kube ||= create_kube_client(kube_url, kube_api_version)
     end
 
     ##
@@ -36,31 +35,29 @@ module K8s
     end
 
     ##
-    # 
+    #
     #   Return the current version of the kubernetes in use
     #
     #  TODO: as the v1beta3 becomes more of the standard, switch over to that one.
     #
     def kube_api_version
-      "v1beta1"
+      'v1beta1'
     end
 
     def entity_exists?(entity_type, entity_name)
-      begin
-        !!self.kube.send("get_#{entity_type}", entity_name)
-      rescue KubeException
-        false
-      end
+      !!kube.send("get_#{entity_type}", entity_name)
+    rescue KubeException
+      false
     end
 
     ##
     #
     #  Repeatedly pass in the apiVersion info into each request, otherwise a 422 is returned.
     #
-    def request_hash(name,options)
+    def request_hash(name, options)
       h = {
         id: name,
-        apiVersion: self.kube_api_version
+        apiVersion: kube_api_version,
       }.merge!(options)
       Chef::Log.debug h
       h
@@ -104,8 +101,7 @@ module K8s
         Chef::Log.error("Missing gem 'kubeclient'. Use the default k8s recipe to install it.")
       end
 
-      validate_endpoint(::Kubeclient::Client.new(url,version))
-
+      validate_endpoint(::Kubeclient::Client.new(url, version))
     end
 
     ##
@@ -116,11 +112,10 @@ module K8s
       begin
         Chef::Log.debug endpoint.get_endpoints
       rescue
-        Chef::Log.error "Unable to connect to the kubernetes api at #{endpoint.api_endpoint.to_s}"
+        Chef::Log.error "Unable to connect to the kubernetes api at #{endpoint.api_endpoint}"
       end
 
       endpoint
     end
-
   end
 end
