@@ -76,7 +76,7 @@ action :create do
     repo 'gcr.io/google_containers/hyperkube'
     tag 'v0.21.2'
     binds ['/var/run/docker.sock:/var/run/docker.sock']
-    command "/hyperkube kubelet --api_servers=http://#{new_resource.master_ip}:8080 --v=2 --address=0.0.0.0 --enable_server --hostname_override=#{node[:ipaddress]}"
+    command "/hyperkube kubelet --api_servers=http://#{new_resource.master_ip}:8080 --v=2 --address=0.0.0.0 --enable_server --hostname_override=#{node['ipaddress']}"
     restart_policy 'always'
     action :run
   end
