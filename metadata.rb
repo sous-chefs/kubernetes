@@ -1,7 +1,7 @@
 name             'kubernetes'
 maintainer       'Andre Elizondo'
 maintainer_email 'andre@chef.io'
-license          'apache2'
+license          'Apache-2.0'
 description      'Resources for managing Kubernetes'
 long_description 'Deploy a Kubernetes cluster and create, destroy, and update Kubernetes Pods, Services, and Replication Controllers'
 version          '1.0.0'
