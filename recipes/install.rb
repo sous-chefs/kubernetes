@@ -18,7 +18,7 @@
 
 include_recipe '::default'
 
-include_recipe 'selinux::disabled' if node[:platform_family].eql? 'rhel'
+include_recipe 'selinux::disabled' if platform_family?('rhel')
 
 docker_service 'kubernetes' do
   action [:create, :start]
