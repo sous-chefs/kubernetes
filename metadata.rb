@@ -11,3 +11,5 @@ depends 'selinux', '~> 0.9.0'
 depends 'docker', '~> 2.3'
 
 supports 'rhel'
+supports 'centos'
+
