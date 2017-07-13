@@ -1,0 +1,3 @@
+Style/ClassVars:
+  Exclude:
+    - 'libraries/kube.rb'
