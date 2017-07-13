@@ -45,7 +45,6 @@ action :create do
     Chef::Log.debug "no existing replication controller named #{new_resource.id}"
     converge_by("create replication controller #{new_resource.id}") do
       Chef::Log.debug kube.create_replication_controller(request_hash(new_resource.id, rc_options))
-      new_resource.updated_by_last_action(true)
     end
   else
     Chef::Log.debug "an existing replication controller was found named #{new_resource.id}"
@@ -61,7 +60,6 @@ action :destroy do
     Chef::Log.debug "found replication controller #{new_resource.id}"
     converge_by("delete replication controller #{new_resource.id}") do
       Chef::Log.debug kube.delete_replication_controller(new_resource.id)
-      new_resource.updated_by_last_action(true)
     end
   end
 end

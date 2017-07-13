@@ -38,7 +38,6 @@ action :create do
     converge_by("create pod #{new_resource.id}") do
       Chef::Log.debug request_hash(new_resource.id, pod_options)
       Chef::Log.debug kube.create_pod(request_hash(new_resource.id, pod_options))
-      new_resource.updated_by_last_action(true)
     end
   else
     Chef::Log.debug "pod #{new_resource.id} already exists."
@@ -54,7 +53,6 @@ action :destroy do
     Chef::Log.debug "found an existing pod with the name #{new_resource.id}"
     converge_by("delete pod #{new_resource.id}") do
       Chef::Log.debug kube.delete_pod(new_resource.id)
-      new_resource.updated_by_last_action(true)
     end
   end
 end
