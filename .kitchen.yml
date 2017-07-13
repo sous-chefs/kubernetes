@@ -5,7 +5,6 @@ driver_config:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: true
 
 verifier:
   name: inspec
