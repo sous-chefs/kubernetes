@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'k8s::install' do
+describe 'kubernetes::install' do
   context 'installs the needed packages for kubernetes' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)

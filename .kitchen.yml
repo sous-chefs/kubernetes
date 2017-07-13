@@ -25,13 +25,13 @@ platforms:
 suites:
   # - name: default
   #   run_list:
-  #     - recipe[k8s::default]
-  #     - recipe[k8s::master]
-  #     - recipe[k8s::node]
+  #     - recipe[kubernetes::default]
+  #     - recipe[kubernetes::master]
+  #     - recipe[kubernetes::node]
   #   attributes:
   # - name: docker
   #   run_list:
-  #     - recipe[k8s::docker_install]
+  #     - recipe[kubernetes::docker_install]
   #   attributes:
   - name: decker-master
     run_list:
@@ -53,6 +53,6 @@ suites:
         client_version: '0.3.0'
 #  - name: node-1
 #    run_list:
-#      - recipe[k8s::default]
-#      - recipe[k8s::node]
+#      - recipe[kubernetes::default]
+#      - recipe[kubernetes::node]
 #    attributes:

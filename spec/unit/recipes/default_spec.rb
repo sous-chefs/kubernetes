@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'k8s::default' do
+describe 'kubernetes::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)

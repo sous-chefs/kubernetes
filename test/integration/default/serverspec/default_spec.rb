@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'k8s::default' do
+describe 'kubernetes::default' do
   # Serverspec examples can be found at
   # http://serverspec.org/resource_types.html
 

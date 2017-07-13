@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe 'k8s::master' do
+describe 'kubernetes::master' do
   context 'starts and enables the kubernetes master services' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new.converge(described_recipe)
