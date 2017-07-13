@@ -1,6 +1,6 @@
 name             'kubernetes'
-maintainer       'Andre Elizondo'
-maintainer_email 'andre@chef.io'
+maintainer       'Chef Software, Inc.'
+maintainer_email 'cookbooks@chef.io'
 license          'Apache-2.0'
 description      'Resources for managing Kubernetes'
 long_description 'Deploy a Kubernetes cluster and create, destroy, and update Kubernetes Pods, Services, and Replication Controllers'
@@ -14,6 +14,6 @@ depends 'compat_resource', '>= 12.16'
 supports 'redhat'
 supports 'centos'
 
-source_url 'https://github.com/andrewelizondo/kubernetes'
-issues_url 'https://github.com/andrewelizondo/kubernetes/issues'
+source_url 'https://github.com/chef-cookbooks/kubernetes'
+issues_url 'https://github.com/chef-cookbooks/kubernetes/issues'
 chef_version '>= 12.1' if respond_to?(:chef_version)
