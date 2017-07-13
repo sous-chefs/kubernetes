@@ -18,6 +18,6 @@
 # include_recipe 'build-essential'
 
 # gem_package 'kubeclient' do
-#   version node['k8s']['client_version']
+#   version node['kubernetes']['client_version']
 #   action :install
 # end

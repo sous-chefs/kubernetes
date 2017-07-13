@@ -31,7 +31,7 @@ module K8s
     #  There's probably a better way to do this, but this method will return the url used to access the kubernetes api
     #
     def kube_url
-      "http://#{node['k8s']['master']['ip']}:#{node['k8s']['master']['port']}/api"
+      "http://#{node['kubernetes']['master']['ip']}:#{node['kubernetes']['master']['port']}/api"
     end
 
     ##
