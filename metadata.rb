@@ -11,7 +11,7 @@ depends 'selinux', '>= 0.9.0'
 depends 'docker', '>= 2.3'
 depends 'compat_resource', '>= 12.16'
 
-supports 'rhel'
+supports 'redhat'
 supports 'centos'
 
 source_url 'https://github.com/andrewelizondo/kubernetes'
