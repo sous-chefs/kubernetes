@@ -15,6 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default['kubernetes']['client_version'] = '0.1.7'
+default['kubernetes']['client_version'] = '2.4.0'
 default['kubernetes']['master']['ip'] = '127.0.0.1'
 default['kubernetes']['master']['port'] = '8080'
