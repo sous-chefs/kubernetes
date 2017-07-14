@@ -98,7 +98,13 @@ module K8s
       begin
         require 'kubeclient'
       rescue LoadError
-        Chef::Log.error("Missing gem 'kubeclient'. Use the default k8s recipe to install it.")
+        Chef::Log.info('Failed to load the kubeclient gem. Running build-essential and installing the gem')
+        include_recipe 'build-essential'
+        chef_gem 'kubeclient' do
+          version node['k8s']['client_version']
+          action :install
+        end
+
       end
 
       validate_endpoint(::Kubeclient::Client.new(url, version))
