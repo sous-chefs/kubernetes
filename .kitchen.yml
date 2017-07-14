@@ -1,7 +1,5 @@
-#<% require 'kitchen-sync' %>
----
-driver_config:
-   digitalocean_access_token: <%= ENV['DIGITALOCEAN_API_TOKEN'] %>
+driver:
+  name: vagrant
 
 provisioner:
   name: chef_zero
@@ -10,49 +8,15 @@ verifier:
   name: inspec
 
 platforms:
-- name: centos-7.0
-  driver_plugin: digitalocean
-  driver_config:
-    size: 2gb
-    image: centos-7-0-x64
-    region: <%= ENV['DIGITALOCEAN_REGION'] %>
-    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEYS'] %>
-  transport:
-    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
-  run_list:
-  - recipe[yum-docker]
+  - name: centos-7.3
+  - name: debian-8.8
+  - name: debian-9.0
+  - name: ubuntu-16.04
 
 suites:
-  # - name: default
-  #   run_list:
-  #     - recipe[kubernetes::default]
-  #     - recipe[kubernetes::master]
-  #     - recipe[kubernetes::node]
-  #   attributes:
-  # - name: docker
-  #   run_list:
-  #     - recipe[kubernetes::docker_install]
-  #   attributes:
-  - name: decker-master
+  - name: docker-master
     run_list:
       - recipe[kubernetes::master]
-    attributes:
-      kubernetes:
-        client_version: '0.3.0'
   - name: decker-worker
     run_list:
       - recipe[kubernetes::node]
-    attributes:
-      kubernetes:
-        client_version: '0.3.0'
-  - name: decker-worker-2
-    run_list:
-      - recipe[kubernetes::node]
-    attributes:
-      kubernetes:
-        client_version: '0.3.0'
-#  - name: node-1
-#    run_list:
-#      - recipe[kubernetes::default]
-#      - recipe[kubernetes::node]
-#    attributes:
