@@ -28,7 +28,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 
 ### Cookbooks
 
-- compat_resource
 - build-essential
 - selinux
 - docker

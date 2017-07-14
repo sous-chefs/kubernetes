@@ -9,11 +9,10 @@ version          '1.0.0'
 depends 'build-essential', '>= 2.2.3'
 depends 'selinux', '>= 0.9.0'
 depends 'docker', '>= 2.3'
-depends 'compat_resource', '>= 12.16'
 
 supports 'redhat'
 supports 'centos'
 
 source_url 'https://github.com/chef-cookbooks/kubernetes'
 issues_url 'https://github.com/chef-cookbooks/kubernetes/issues'
-chef_version '>= 12.1' if respond_to?(:chef_version)
+chef_version '>= 12.9' if respond_to?(:chef_version)
