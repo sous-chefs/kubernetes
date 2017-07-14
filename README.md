@@ -41,10 +41,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 
 ## Recipes
 
-### default
-
-Installs the kubeclient ruby gem for interacting with the Kubernetes api
-
 ### install
 
 Creates a docker service for kubernetes
