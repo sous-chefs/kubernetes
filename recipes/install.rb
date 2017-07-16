@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-include_recipe 'selinux::disabled' if platform_family?('rhel')
+include_recipe 'selinux::disabled' if platform_family?('rhel') && node['kubernetes']['disable_selinux']
 
 docker_service 'kubernetes' do
   action [:create, :start]

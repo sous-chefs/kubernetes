@@ -16,5 +16,6 @@
 # limitations under the License.
 
 default['kubernetes']['client_version'] = '2.4.0'
+default['kubernetes']['disable_selinux'] = true
 default['kubernetes']['master']['ip'] = '127.0.0.1'
 default['kubernetes']['master']['port'] = '8080'
