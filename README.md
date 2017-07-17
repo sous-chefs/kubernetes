@@ -35,7 +35,7 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 ## Attributes
 
 - `['kubernetes']['master']['ip']` - the address used when contacting the kubernetes api
-- `['kubernetes']['master']['port']` - the port that will be used whe contacting the kubernetes api
+- `['kubernetes']['master']['port']` - the port that will be used when contacting the kubernetes api
 - `['kubernetes']['client_version']` - the version of the kubeclient gem to install
 
 ## Recipes
@@ -137,7 +137,7 @@ Replication controllers are used to maintain a consistent amount of a pod at any
 - `containers` - **required** a hash of container information that will be used when the replication controller needs to generate new pods
 - `volumes` - a hash of volume information used in generating new pods
 - `selector` - how the replication controller will ensure that enough replicas exist
-- `pod_labels` - specify the labels added to the indivial pods that are spawned off
+- `pod_labels` - specify the labels added to the individual pods that are spawned off
 - `labels` - specify the labels that will be added to the replication controller
 
 #### Examples
