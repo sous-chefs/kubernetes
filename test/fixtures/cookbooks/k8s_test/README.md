@@ -1,1 +1,0 @@
-This is a test cookbook for the k8s cookbook

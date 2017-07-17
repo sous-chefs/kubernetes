@@ -4,11 +4,6 @@
 
 Resources for deploying various Kubernetes entities, these resources are designed to be ran on the kubernetes master but can be ran anywhere that has access to a kubernetes api by changing the `['kubernetes']['master']['ip']` attribute. These resources utilize the kubeclient ruby gem and run against the v1beta1 api.
 
-Currently supported resources:
-
-- Kubernetes Master (`kube_master`)
-- Kubernetes Node (`kube_node`)
-
 Currently broken resources: (waiting on support for v1 api through kubeclient gem)
 
 - Kubernetes Pod (`kube_pod`)
@@ -36,45 +31,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 - `['kubernetes']['client_version']` - the version of the kubeclient gem to install
 
 ## Resources
-
-### Kubernetes Master (`kube_master`)
-
-Deploy the containers needed to make a functioning Kubernetes master locally on the system. This will deploy etcd, flannel, and all needed kubernetes services.
-
-#### Actions
-
-- `create` - default. setup the system as a kubernetes master
-- `destroy` - stop all related containers
-
-#### Examples
-
-```ruby
-kube_master 'default' do
-  action :create
-end
-```
-
-### Kubernetes Node (`kube_node`)
-
-Deploy the containers needed to make a functioning Kubernetes node that can attach to a remote master. This will deploy flannel and the needed kubernetes services.
-
-#### Actions
-
-- `create` - default. setup the system as a kubernetes node
-- `destroy` - stop all related containers
-
-#### Attribute Parameters
-
-- `master_ip` - **required** The ip address of your kubernetes masters
-
-#### Examples
-
-```ruby
-kube_node 'default-worker' do
-  action :create
-  master_ip '10.1.2.3'
-end
-```
 
 ### Kubernetes Pod (`kube_pod`)
 
