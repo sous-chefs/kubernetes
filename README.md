@@ -38,20 +38,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 - `['kubernetes']['master']['port']` - the port that will be used when contacting the kubernetes api
 - `['kubernetes']['client_version']` - the version of the kubeclient gem to install
 
-## Recipes
-
-### install
-
-Creates a docker service for kubernetes
-
-### master
-
-Ensures the needed containers for a kubernetes master are deployed/running with proper networking setup
-
-### node
-
-Ensures the needed containers for a kubernetes node are in place and running
-
 ## Resources
 
 ### Kubernetes Master (`kube_master`)
