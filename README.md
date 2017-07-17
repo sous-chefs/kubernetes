@@ -19,8 +19,7 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 
 ### Platforms
 
-- Debian/Ubuntu
-- RHEL/CentOS/Scientific/Amazon/Oracle
+- All platforms where kubeclient gem can be installed
 
 ### Chef
 
@@ -29,8 +28,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 ### Cookbooks
 
 - build-essential
-- selinux
-- docker
 
 ## Attributes
 

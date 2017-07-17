@@ -3,15 +3,11 @@ maintainer       'Chef Software, Inc.'
 maintainer_email 'cookbooks@chef.io'
 license          'Apache-2.0'
 description      'Resources for managing Kubernetes'
-long_description 'Deploy a Kubernetes cluster and create, destroy, and update Kubernetes Pods, Services, and Replication Controllers'
 version          '1.0.0'
 
 depends 'build-essential', '>= 2.2.3'
-depends 'selinux', '>= 0.9.0'
-depends 'docker', '>= 2.3'
 
-supports 'redhat'
-supports 'centos'
+supports 'all'
 
 source_url 'https://github.com/chef-cookbooks/kubernetes'
 issues_url 'https://github.com/chef-cookbooks/kubernetes/issues'
