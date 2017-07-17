@@ -104,7 +104,6 @@ module K8s
           version node['k8s']['client_version']
           action :install
         end
-
       end
 
       validate_endpoint(::Kubeclient::Client.new(url, version))
