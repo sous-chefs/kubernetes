@@ -24,7 +24,7 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 
 ### Chef
 
-- Chef 12.1+
+- Chef 12.9+
 
 ### Cookbooks
 
