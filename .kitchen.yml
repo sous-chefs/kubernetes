@@ -3,20 +3,17 @@ driver:
 
 provisioner:
   name: chef_zero
+  deprecations_as_errors: true
 
 verifier:
   name: inspec
 
 platforms:
   - name: centos-7.3
-  - name: debian-8.8
-  - name: debian-9.0
+  - name: debian-8.9
+  - name: debian-9.1
   - name: ubuntu-16.04
 
 suites:
-  - name: docker-master
-    run_list:
-      - recipe[kubernetes::master]
-  - name: decker-worker
-    run_list:
-      - recipe[kubernetes::node]
+  - name: default
+    run_list: test::default
