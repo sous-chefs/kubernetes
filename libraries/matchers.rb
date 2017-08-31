@@ -17,7 +17,7 @@
 #
 
 if defined?(ChefSpec)
-  #pod
+  # pod
   def create_kube_pod(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:kube_pod, :create, resource_name)
   end
@@ -26,7 +26,7 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:kube_pod, :destroy, resource_name)
   end
 
-  #replication controller
+  # replication controller
   def create_kube_replication_controller(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:kube_replication_controller, :create, resource_name)
   end
@@ -35,7 +35,7 @@ if defined?(ChefSpec)
     ChefSpec::Matchers::ResourceMatcher.new(:kube_replication_controller, :destroy, resource_name)
   end
 
-  #service
+  # service
   def create_kube_service(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:kube_service, :create, resource_name)
   end

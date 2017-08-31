@@ -16,18 +16,66 @@
 # limitations under the License.
 #
 
-actions :create, :destroy
-default_action :create
-
-provides :kube_pod
+resource_name :kube_pod
 
 # the name that will be used to identify the pod
-attribute :id, name_attribute: true, kind_of: String
+property :id, String, name_property: true
 
 # a hash/array of hashes of containers/volumes that kubernetes will add to the pod
-attribute :containers, kind_of: [Hash,Array], required: true
-attribute :volumes, default: {}, kind_of: Hash
+property :containers, [Hash, Array], required: true
+property :volumes, Hash, default: {}
 
 # labels that will be added to the pod
-attribute :labels, default: {}, kind_of: [Hash,Array,String]
+property :labels, [Hash, Array, String], default: {}
 
+action :create do
+  Chef::Log.fatal 'This resource is currently under active development and is not functioning at this time'
+
+  Chef::Log.debug "checking for an existing pod named #{new_resource.id}.."
+
+  if !entity_exists?('pod', new_resource.id)
+    Chef::Log.debug "pod #{new_resource.id} does not exist"
+    converge_by("create pod #{new_resource.id}") do
+      Chef::Log.debug request_hash(new_resource.id, pod_options)
+      Chef::Log.debug kube.create_pod(request_hash(new_resource.id, pod_options))
+    end
+  else
+    Chef::Log.debug "pod #{new_resource.id} already exists."
+  end
+end
+
+action :destroy do
+  Chef::Log.debug "checking for existing pod named #{new_resource.id}"
+
+  if !entity_exists?('pod', new_resource.id)
+    Chef::Log.debug "a pod with the name #{new_resource.id} does not exist"
+  else
+    Chef::Log.debug "found an existing pod with the name #{new_resource.id}"
+    converge_by("delete pod #{new_resource.id}") do
+      Chef::Log.debug kube.delete_pod(new_resource.id)
+    end
+  end
+end
+
+action_class do
+  include K8s::Client
+
+  def pod_options
+    options = {
+      desiredState: {
+        manifest: {
+          id: new_resource.id,
+          version: kube_api_version,
+          containers: new_resource.containers.is_a?(Array) ? new_resource.containers : Array[new_resource.containers],
+        },
+      },
+      labels: parse_labels(new_resource.labels),
+    }
+
+    unless new_resource.volumes.empty?
+      options[:desiredState][:manifest][:volumes] = new_resource.volumes.is_a?(Array) ? new_resource.volumes : Array[new_resource.volumes]
+    end
+
+    options
+  end
+end

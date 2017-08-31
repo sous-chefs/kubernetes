@@ -16,22 +16,60 @@
 # limitations under the License.
 #
 
-actions :create, :destroy
-default_action :create
-
-provides :kube_service
+resource_name :kube_service
 
 # how kubernetes will identify the service
-attribute :id, name_attribute: true, kind_of: String
+property :id, String, name_property: true
 
 # the port that the service will be listening on
-attribute :port, required: true, kind_of: Fixnum
+property :port, Integer, required: true
 
 # the internal port that kubernetes will route from the service to the container
-attribute :container_port, kind_of: Fixnum
+property :container_port, Integer
 
 # labels added to the service itself
-attribute :labels, default: {}, kind_of: [Hash,Array,String]
+property :labels, [Hash, Array, String], default: {}
 
 # labels that the service will use to select which containers to route to
-attribute :selector, default: {}, kind_of: [Hash,Array,String]
+property :selector, [Hash, Array, String], default: {}
+
+action :create do
+  Chef::Log.fatal 'This resource is currently under active development and is not functioning at this time'
+
+  Chef::Log.debug "checking for an existing service named #{new_resource.id}.."
+
+  if !entity_exists?('service', new_resource.id)
+    Chef::Log.debug "service #{new_resource.id} does not exist"
+    converge_by("create service #{new_resource.id}") do
+      Chef::Log.debug kube.create_service(request_hash(new_resource.id, service_options))
+    end
+  else
+    Chef::Log.debug "service #{new_resource.id} already exists"
+  end
+end
+
+action :destroy do
+  Chef::Log.debug "checking for existing service named #{new_resource.id}"
+
+  if !entity_exists?('service', new_resource.id)
+    Chef::Log.debug "service #{new_resource.id} does not exist"
+  else
+    Chef::Log.debug "found service named #{new_resource.id}"
+    converge_by("delete service #{new_resource.id}") do
+      Chef::Log.debug kube.delete_service(new_resource.id)
+    end
+  end
+end
+
+action_class do
+  include K8s::Client
+
+  def service_options
+    {
+      port: new_resource.port,
+      containerPort: !new_resource.container_port.nil? ? new_resource.container_port : new_resource.port,
+      selector: parse_labels(new_resource.selector),
+      labels: parse_labels(new_resource.labels),
+    }
+  end
+end
