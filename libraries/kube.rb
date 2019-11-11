@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software, Inc.
+# Copyright:: 2015-2019, Chef Software, Inc.
 # License:: Apache License, Version 2.0
 # Authors:  Andre Elizondo (andre@chef.io)
 #
@@ -99,7 +99,9 @@ module K8s
         require 'kubeclient'
       rescue LoadError
         Chef::Log.info('Failed to load the kubeclient gem. Running build-essential and installing the gem')
-        include_recipe 'build-essential'
+
+        build_essential 'install compilation tools'
+
         chef_gem 'kubeclient' do
           version node['k8s']['client_version']
           action :install

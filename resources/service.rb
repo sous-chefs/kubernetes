@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2015 Chef Software, Inc.
+# Copyright:: 2015-2019, Chef Software, Inc.
 # License:: Apache License, Version 2.0
 # Authors:  Andre Elizondo (andre@chef.io)
 #
