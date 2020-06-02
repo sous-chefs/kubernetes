@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-resource_name :kube_replication_controller
+provides :kube_replication_controller
 
 # the id that kubernetes will identify the controller with
 property :id, String, name_property: true
