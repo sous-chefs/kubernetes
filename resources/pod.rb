@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-resource_name :kube_pod
+provides :kube_pod
 
 # the name that will be used to identify the pod
 property :id, String, name_property: true

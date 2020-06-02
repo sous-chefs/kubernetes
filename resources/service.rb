@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-resource_name :kube_service
+provides :kube_service
 
 # how kubernetes will identify the service
 property :id, String, name_property: true
