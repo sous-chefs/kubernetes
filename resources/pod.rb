@@ -17,6 +17,7 @@
 #
 
 provides :kube_pod
+unified_mode true
 
 # the name that will be used to identify the pod
 property :id, String, name_property: true
