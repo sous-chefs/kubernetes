@@ -3,7 +3,7 @@ maintainer       'Chef Software, Inc.'
 maintainer_email 'cookbooks@chef.io'
 license          'Apache-2.0'
 description      'Resources for managing Kubernetes'
-version          '1.0.0'
+version          '1.0.1'
 
 supports 'all'
 
