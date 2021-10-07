@@ -17,6 +17,7 @@
 #
 
 provides :kube_service
+unified_mode true
 
 # how kubernetes will identify the service
 property :id, String, name_property: true

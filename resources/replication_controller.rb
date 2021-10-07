@@ -17,6 +17,7 @@
 #
 
 provides :kube_replication_controller
+unified_mode true
 
 # the id that kubernetes will identify the controller with
 property :id, String, name_property: true
