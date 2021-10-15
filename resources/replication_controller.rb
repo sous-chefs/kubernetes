@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true if respond_to?(:unified_mode)
+
 provides :kube_replication_controller
 
 # the id that kubernetes will identify the controller with

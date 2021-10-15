@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true if respond_to?(:unified_mode)
+
 provides :kube_service
 
 # how kubernetes will identify the service
