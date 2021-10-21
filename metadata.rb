@@ -9,4 +9,4 @@ supports 'all'
 
 source_url 'https://github.com/chef-cookbooks/kubernetes'
 issues_url 'https://github.com/chef-cookbooks/kubernetes/issues'
-chef_version '>= 14.0'
+chef_version '>= 15.3'
