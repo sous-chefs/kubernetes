@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 provides :kube_service
 
 # how kubernetes will identify the service

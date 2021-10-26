@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+unified_mode true
+
 provides :kube_pod
 
 # the name that will be used to identify the pod
