@@ -9,4 +9,3 @@ issues_url       'https://github.com/chef-cookbooks/kubernetes/issues'
 chef_version     '>= 15.3'
 
 supports 'all'
-
