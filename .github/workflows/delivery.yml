@@ -1,6 +1,6 @@
 name: delivery
 
-on: [push, pull_request]
+'on': [push, pull_request]
 
 jobs:
   delivery:
@@ -44,7 +44,7 @@ jobs:
           - ubuntu-1804
           - ubuntu-2004
         suite:
-         - default
+          - default
       fail-fast: false
     steps:
       - name: Check out code
