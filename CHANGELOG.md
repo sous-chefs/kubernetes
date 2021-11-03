@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the kubernetes cookbook.
 
+## Unreleased
+
 ## 2.0.1 - *2021-11-03*
 
 - Sous-Chefs adoption
