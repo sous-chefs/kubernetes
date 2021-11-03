@@ -32,94 +32,6 @@ Currently broken resources: (waiting on support for v1 api through kubeclient ge
 
 ## Resources
 
-### Kubernetes Pod (`kube_pod`)
-
-Manage a standalone Kubernetes pod, there is no redundancy in a pod and is simply used to specify a group of containers to be jointly deployed on a host.
-
-#### Actions
-
-- `create` - default. ensures the pod is created
-- `destroy` - ensures the pod does not exist
-
-#### Attribute Parameters
-
-- `id` - name attribute. The identifier used when managing the pod
-- `containers` - **required** a hash of container information that will be used when creating the pod
-- `volumes` - a hash of volume information used when specifying storage for containers
-- `labels` - specify the labels that will be added to the pod
-
-#### Examples
-
-```ruby
-kube_pod "my-pod" do
-  containers({
-    name: 'pod-member',
-    image: 'my/image'
-  })
-  labels "aww=yiss"
-  action [:destroy,:create]
-end
-```
-
-### Kubernetes Replication Controller (`kube_replication_controller`)
-
-Replication controllers are used to maintain a consistent amount of a pod at any given time using selector labels
-
-#### Actions
-
-- `create` - default. ensures the replication controller is created
-- `destroy` - ensures the replication controller does not exist
-
-#### Attribute Parameters
-
-- `id` - name attribute. The identifier used when managing the replication controller
-- `containers` - **required** a hash of container information that will be used when the replication controller needs to generate new pods
-- `volumes` - a hash of volume information used in generating new pods
-- `selector` - how the replication controller will ensure that enough replicas exist
-- `pod_labels` - specify the labels added to the individual pods that are spawned off
-- `labels` - specify the labels that will be added to the replication controller
-
-#### Examples
-
-```ruby
-kube_replication_controller "master-controller" do
-  containers({
-    name: 'redis-master',
-    image: 'dockerfile/redis'
-  })
-  replicas 2
-  selector 'role' => 'master','app' => 'redis'
-  labels ['aww=yiss','motha-freakin=breadcrumbs']
-  action [:destroy,:create]
-end
-```
-
-### Kubernetes Service (`kube_service`)
-
-Deploy a Kubernetes service, which can be used as a basic container load balancer that routes traffic based on selector labels
-
-#### Actions
-
-- `create` - default. ensure the service exists
-- `destroy` - ensure the service does not exist
-
-#### Attribute Parameters
-
-- `id` - name attribute. The identifier used when managing the service
-- `port` - **required** the port that the service will listen on for traffic
-- `container_port` - what port the service will route to on the selected containers _defaults to the port that the service is listening on_
-- `selector` - labels that the service will use when choosing containers to route traffic to
-- `labels` - labels that will be added to the service
-
-#### Examples
-
-```ruby
-kube_service "backend-service" do
-  port 8005
-  selector 'role' => 'backend'
-end
-```
-
 ## Containers and Volumes
 
 The syntax used when specifying containers and volumes is specific to the kubernetes api, for examples on what these can/should look like please see the kubernetes [documentation](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/docs)/[examples](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/examples).
@@ -136,7 +48,7 @@ Copyright 2015, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-```
+```text
 http://www.apache.org/licenses/LICENSE-2.0
 ```
 
