@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the kubernetes cookboo
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 2.0.1 - *2021-11-03*
 
 - Sous-Chefs adoption
