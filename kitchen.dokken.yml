@@ -1,27 +1,22 @@
 ---
 driver:
   name: dokken
-  privileged: true  # because Docker and SystemD/Upstart
+  privileged: true
 
-transport:
-  name: dokken
-
-provisioner:
-  name: dokken
-
-verifier:
-  name: inspec
+transport: { name: dokken }
+provisioner: { name: dokken }
+verifier: { name: inspec }
 
 platforms:
+  - name: almalinux-8
+    driver:
+      image: dokken/almalinux-8
+      pid_one_command: /usr/lib/systemd/systemd
+
   - name: amazonlinux-2
     driver:
       image: dokken/amazonlinux-2
       pid_one_command: /usr/lib/systemd/systemd
-
-  - name: debian-9
-    driver:
-      image: dokken/debian-9
-      pid_one_command: /bin/systemd
 
   - name: debian-10
     driver:
@@ -38,9 +33,9 @@ platforms:
       image: dokken/centos-7
       pid_one_command: /usr/lib/systemd/systemd
 
-  - name: centos-8
+  - name: centos-stream-8
     driver:
-      image: dokken/centos-8
+      image: dokken/centos-stream-8
       pid_one_command: /usr/lib/systemd/systemd
 
   - name: fedora-latest
@@ -57,6 +52,11 @@ platforms:
     driver:
       image: dokken/ubuntu-20.04
       pid_one_command: /bin/systemd
+
+  - name: rockylinux-8
+    driver:
+      image: dokken/rockylinux-8
+      pid_one_command: /usr/lib/systemd/systemd
 
   - name: opensuse-leap-15
     driver:
