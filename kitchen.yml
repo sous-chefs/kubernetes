@@ -3,10 +3,12 @@ driver:
 
 provisioner:
   name: chef_infra
-  deprecations_as_errors: true
   product_name: <%= ENV['CHEF_PRODUCT_NAME'] || 'chef' %>
-  chef_license: accept-no-persist
   product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
+  chef_license: accept-no-persist
+  enforce_idempotency: true
+  multiple_converge: 2
+  deprecations_as_errors: true
   log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
 
 verifier:
