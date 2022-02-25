@@ -4,6 +4,13 @@ This file is used to list changes made in each version of the kubernetes cookboo
 
 ## Unreleased
 
+- resolved cookstyle error: .delivery/project.toml:2:8 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:4:10 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:5:13 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:6:10 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:7:9 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:8:14 convention: `Style/StringLiterals`
+- resolved cookstyle error: .delivery/project.toml:9:11 convention: `Style/StringLiterals`
 - resolved cookstyle error: resources/pod.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
 - resolved cookstyle error: resources/replication_controller.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
 - resolved cookstyle error: resources/service.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
