@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the kubernetes cookboo
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 - Update Test Kitchen provisioner settings
 - Remove PID one command in Dokken
   - These are all the defaults and we should use the correct container defaults
