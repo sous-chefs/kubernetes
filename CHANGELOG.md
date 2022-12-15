@@ -10,7 +10,7 @@ Standardise files with files in sous-chefs/repo-management
 
 - Update Test Kitchen provisioner settings
 - Remove PID one command in Dokken
-  - These are all the defaults and we should use the correct container defaults
+   - These are all the defaults and we should use the correct container defaults
 
 ## 2.0.2 - *2022-02-07*
 
