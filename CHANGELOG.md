@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the kubernetes cookbook.
 
-## Unreleased
+## 2.0.10 - *2023-04-01*
 
 Standardise files with files in sous-chefs/repo-management
 
