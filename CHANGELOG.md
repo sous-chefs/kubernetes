@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the kubernetes cookboo
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 2.0.12 - *2023-04-01*
 
 ## 2.0.11 - *2023-04-01*
