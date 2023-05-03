@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the kubernetes cookbook.
 
-## Unreleased
+## 2.0.14 - *2023-05-03*
 
 ## 2.0.13 - *2023-04-07*
 
