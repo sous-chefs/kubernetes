@@ -1,4 +1,4 @@
-name: delivery
+name: CI
 
 "on":
   pull_request:
@@ -7,7 +7,7 @@ name: delivery
 
 jobs:
   lint-unit:
-    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@2.0.6
+    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@3.0.0
 
   integration:
     needs: lint-unit
