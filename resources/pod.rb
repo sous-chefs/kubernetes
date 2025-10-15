@@ -68,14 +68,14 @@ action_class do
         manifest: {
           id: new_resource.id,
           version: kube_api_version,
-          containers: new_resource.containers.is_a?(Array) ? new_resource.containers : Array[new_resource.containers],
+          containers: new_resource.containers.is_a?(Array) ? new_resource.containers : [new_resource.containers],
         },
       },
       labels: parse_labels(new_resource.labels),
     }
 
     unless new_resource.volumes.empty?
-      options[:desiredState][:manifest][:volumes] = new_resource.volumes.is_a?(Array) ? new_resource.volumes : Array[new_resource.volumes]
+      options[:desiredState][:manifest][:volumes] = new_resource.volumes.is_a?(Array) ? new_resource.volumes : [new_resource.volumes]
     end
 
     options
