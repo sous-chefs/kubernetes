@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the kubernetes cookbook.
 
+## [2.0.23](https://github.com/sous-chefs/kubernetes/compare/2.0.22...v2.0.23) (2025-10-15)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#68](https://github.com/sous-chefs/kubernetes/issues/68)) ([59676c1](https://github.com/sous-chefs/kubernetes/commit/59676c13b5666b8bacf8a58a43aee31dd35d9524))
+
 ## 2.0.13 - *2023-04-07*
 
 Standardise files with files in sous-chefs/repo-management
