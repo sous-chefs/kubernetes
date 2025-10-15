@@ -79,7 +79,7 @@ action_class do
             manifest: {
               version: kube_api_version,
               id: new_resource.id,
-              containers: new_resource.containers.is_a?(Array) ? new_resource.containers : Array[new_resource.containers],
+              containers: new_resource.containers.is_a?(Array) ? new_resource.containers : [new_resource.containers],
             },
           },
           labels: parse_labels(new_resource.pod_labels).merge!(parse_labels(new_resource.selector)),
@@ -89,7 +89,7 @@ action_class do
     }
 
     unless new_resource.volumes.empty?
-      options[:desiredState][:podTemplate][:desiredState][:manifest][:volumes] = new_resource.volumes.is_a?(Array) ? new_resource.volumes : Array[new_resource.volumes]
+      options[:desiredState][:podTemplate][:desiredState][:manifest][:volumes] = new_resource.volumes.is_a?(Array) ? new_resource.volumes : [new_resource.volumes]
     end
 
     options

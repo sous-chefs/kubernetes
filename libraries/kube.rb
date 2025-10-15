@@ -83,7 +83,7 @@ module K8s
         if labels.include?(',')
           Hash[labels.split(',').map { |i| i.split('=') }]
         else
-          Hash[Array[labels.split('=')]]
+          Hash[[labels.split('=')]]
         end
       end
     end
