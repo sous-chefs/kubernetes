@@ -51,9 +51,9 @@ jobs:
         uses: helm/kind-action@v1.15.2
         with:
           version: v0.33.0
-          kubectl_version: v1.35.8
+          kubectl_version: v1.37.2
           cluster_name: cookbook-kubernetes
-          node_image: kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0
+          node_image: kindest/node:v1.37.0@sha256:a1ed56cfb0e7b93589bdf97c8cd566405a265939e3620fc4f5de89adff580ae5
       - name: Prepare Kubernetes fixtures and client credentials
         env:
           KITCHEN_KUBECONFIG: ${{ runner.temp }}/kitchen-kubeconfig
