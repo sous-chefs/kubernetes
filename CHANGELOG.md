@@ -2,14 +2,6 @@
 
 This file is used to list changes made in each version of the kubernetes cookbook.
 
-## [2.0.24](https://github.com/sous-chefs/kubernetes/compare/v2.0.23...v2.0.24) (2026-11-10)
-
-
-### Bug Fixes
-
-* **ci:** Update workflows to use release pipeline ([#68](https://github.com/sous-chefs/kubernetes/issues/68)) ([59676c1](https://github.com/sous-chefs/kubernetes/commit/59676c13b5666b8bacf8a58a43aee31dd35d9524))
-* repair workflow actionlint failures ([#76](https://github.com/sous-chefs/kubernetes/issues/76)) ([fa106bf](https://github.com/sous-chefs/kubernetes/commit/fa106bfbf27f78758a3fedf05a3834943d0c6847))
-
 ## [2.0.23](https://github.com/sous-chefs/kubernetes/compare/2.0.22...v2.0.23) (2025-10-15)
 
 

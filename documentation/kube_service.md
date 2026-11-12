@@ -1,25 +1,39 @@
-# Kubernetes Service (`kube_service`)
+# kube_service
 
-Deploy a Kubernetes service, which can be used as a basic container load balancer that routes traffic based on selector labels
+Manage a core/v1 ClusterIP Service and its selector in the selected namespace. API-assigned
+addresses and object metadata are preserved during updates.
 
 ## Actions
 
-- `create` - default. ensure the service exists
-- `destroy` - ensure the service does not exist
+* `:create` (default): create a missing Service or update changed managed fields.
+* `:destroy`, `:delete`: remove the Service. An absent Service requires no change.
 
 ## Properties
 
-- `id` - name attribute. The identifier used when managing the service
-- `port` - **required** the port that the service will listen on for traffic
-- `container_port` - what port the service will route to on the selected containers _defaults to the port that the service is listening on_
-- `selector` - labels that the service will use when choosing containers to route traffic to
-- `labels` - labels that will be added to the service
+Use the shared [connection properties](connection.md), plus:
 
-## Examples
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `port` | Integer | Required for create | Service port |
+| `container_port` | Integer | `port` | Target container port |
+| `protocol` | String | `TCP` | `TCP`, `UDP` or `SCTP` |
+| `selector` | Hash, Array, String | `{}` | Declared Pod selector, using the label input formats |
 
 ```ruby
-kube_service "backend-service" do
-  port 8005
-  selector 'role' => 'backend'
+kube_service 'backend' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  namespace 'applications'
+  port 80
+  container_port 8080
+  selector 'app=backend'
+end
+```
+
+Deletion needs no port:
+
+```ruby
+kube_service 'backend' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  action :destroy
 end
 ```

@@ -1,0 +1,6 @@
+---
+name: kubernetes
+title: Kubernetes core API integration
+maintainer: Sous Chefs
+license: Apache-2.0
+version: 1.0.0

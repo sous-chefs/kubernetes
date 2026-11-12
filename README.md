@@ -1,55 +1,47 @@
-# kubernetes Cookbook
+# kubernetes cookbook
 
-[![Build Status](https://travis-ci.org/chef-cookbooks/kubernetes.svg?branch=master)](https://travis-ci.org/chef-cookbooks/kubernetes) [![Cookbook Version](https://img.shields.io/cookbook/v/kubernetes.svg)](https://supermarket.chef.io/cookbooks/kubernetes)
-
-Resources for deploying various Kubernetes entities, these resources are designed to be ran on the kubernetes master but can be ran anywhere that has access to a kubernetes api by changing the `['kubernetes']['master']['ip']` attribute. These resources utilize the kubeclient ruby gem and run against the v1beta1 api.
-
-Currently broken resources: (waiting on support for v1 api through kubeclient gem)
-
-- Kubernetes Pod (`kube_pod`)
-- Kubernetes Replication Controller (`kube_replication_controller`)
-- Kubernetes Service (`kube_service`)
+Manage Kubernetes Pods, Services and ReplicationControllers through the core/v1 API.
+The cookbook connects to an existing cluster; it does not install Kubernetes.
 
 ## Requirements
 
-### Platforms
+* Chef Infra Client 17 or later.
+* A supported Ruby platform with the build tools needed by kubeclient's native dependencies.
+* An operator-controlled kubeconfig with permission to manage the selected resources and namespace.
+* An existing Kubernetes cluster exposing core/v1.
 
-- All platforms where kubeclient gem can be installed
-
-### Chef
-
-- Chef 14+
-
-### Cookbooks
-
-- build-essential
-
-## Attributes
-
-- `['kubernetes']['master']['ip']` - the address used when contacting the kubernetes api
-- `['kubernetes']['master']['port']` - the port that will be used when contacting the kubernetes api
-- `['kubernetes']['client_version']` - the version of the kubeclient gem to install
+Platform support remains independent of the cluster's operating system. Linux integration tests
+cover maintained Debian, Ubuntu, RHEL derivatives, Amazon Linux, Fedora and openSUSE images.
 
 ## Resources
 
-## Containers and Volumes
+* [kube_pod](documentation/kube_pod.md)
+* [kube_service](documentation/kube_service.md)
+* [kube_replication_controller](documentation/kube_replication_controller.md)
 
-The syntax used when specifying containers and volumes is specific to the kubernetes api, for examples on what these can/should look like please see the kubernetes [documentation](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/docs)/[examples](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/examples).
+All resources accept [connection properties](documentation/connection.md). They create missing
+objects, update managed fields when they differ, and leave API defaults intact. Authentication,
+validation, immutable-field and connection errors fail convergence.
 
-## Labels
-
-Theres a bit of magic in the helper library that allows you to specify labels as either a hash `'this' => 'that', 'app' => 'redis'`, an array of labels `['this=that','app=redis']`, or a comma delimited string `'this=that,app=redis'`. All three will be treated as the same thing when writing your resources.
-
-## License and Author
-
-- Author:: Andre Elizondo ([andre@chef.io](mailto:andre@chef.io))
-
-Copyright 2015, Chef Software, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-```text
-http://www.apache.org/licenses/LICENSE-2.0
+```ruby
+kube_service 'backend' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  namespace 'applications'
+  port 80
+  container_port 8080
+  selector 'app=backend'
+end
 ```
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Use `:delete` or the existing `:destroy` action to remove an object from the selected namespace.
+Deleting one object does not remove its namespace, credentials or objects in other namespaces.
+
+## Upgrading
+
+This is a full custom resource migration. Root node attributes and the removed v1beta1 payload
+format are no longer supported. See [migration.md](migration.md) for connection and input changes.
+
+## Testing
+
+See [TESTING.md](TESTING.md) for the real Kind-backed Kitchen workflow. Tests exercise creation,
+updates, deletion, namespace isolation and a second converge with no changes.
