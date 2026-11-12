@@ -1,28 +1,39 @@
-# Kubernetes Pod (`kube_pod`)
+# kube_pod
 
-Manage a standalone Kubernetes pod, there is no redundancy in a pod and is simply used to specify a group of containers to be jointly deployed on a host.
+Create, update or delete a core/v1 Pod in the selected namespace.
 
 ## Actions
 
-- `create` - default. ensures the pod is created
-- `destroy` - ensures the pod does not exist
+* `:create` (default): create a missing Pod or update changed managed fields.
+* `:destroy`, `:delete`: remove the Pod. An absent Pod requires no change.
+
+Kubernetes rejects changes to immutable Pod fields. Those errors are returned to Chef rather
+than deleting and replacing a running Pod automatically.
 
 ## Properties
 
-- `id` - name attribute. The identifier used when managing the pod
-- `containers` - **required** a hash of container information that will be used when creating the pod
-- `volumes` - a hash of volume information used when specifying storage for containers
-- `labels` - specify the labels that will be added to the pod
+Use the shared [connection properties](connection.md), plus:
 
-## Examples
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `containers` | Hash, Array | `[]` | One or more core/v1 container specifications; required for create |
+| `volumes` | Hash, Array | `[]` | Core/v1 volume specifications |
 
 ```ruby
-kube_pod "my-pod" do
-  containers({
-    name: 'pod-member',
-    image: 'my/image'
-  })
-  labels "aww=yiss"
-  action [:destroy,:create]
+kube_pod 'web' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  namespace 'applications'
+  containers [{ name: 'web', image: 'nginx:stable' }]
+  labels 'app' => 'web'
+end
+```
+
+Deletion needs no container specification:
+
+```ruby
+kube_pod 'web' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  namespace 'applications'
+  action :delete
 end
 ```

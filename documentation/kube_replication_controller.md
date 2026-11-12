@@ -1,32 +1,31 @@
-# Kubernetes Replication Controller (`kube_replication_controller`)
+# kube_replication_controller
 
-Replication controllers are used to maintain a consistent amount of a pod at any given time using selector labels
+Manage an existing core/v1 ReplicationController API. This resource remains available for
+existing users; Kubernetes recommends Deployments for most new applications.
 
 ## Actions
 
-- `create` - default. ensures the replication controller is created
-- `destroy` - ensures the replication controller does not exist
+* `:create` (default): create or update the controller's managed fields and Pod template.
+* `:destroy`, `:delete`: remove the controller and let Kubernetes delete its dependent Pods.
 
 ## Properties
 
-- `id` - name attribute. The identifier used when managing the replication controller
-- `containers` - **required** a hash of container information that will be used when the replication controller needs to generate new pods
-- `volumes` - a hash of volume information used in generating new pods
-- `selector` - how the replication controller will ensure that enough replicas exist
-- `pod_labels` - specify the labels added to the individual pods that are spawned off
-- `labels` - specify the labels that will be added to the replication controller
+Use the shared [connection properties](connection.md), plus:
 
-## Examples
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `containers` | Hash, Array | `[]` | Core/v1 containers; required for create |
+| `volumes` | Hash, Array | `[]` | Core/v1 volumes |
+| `replicas` | Integer | `1` | Desired number of Pods |
+| `selector` | Hash, Array, String | `{ 'app' => id }` | Complete selector |
+| `pod_labels` | Hash, Array, String | `{}` | Pod template labels; selector labels are included automatically |
 
 ```ruby
-kube_replication_controller "master-controller" do
-  containers({
-    name: 'redis-master',
-    image: 'dockerfile/redis'
-  })
+kube_replication_controller 'workers' do
+  kubeconfig '/etc/chef/kubernetes.conf'
+  namespace 'applications'
+  containers [{ name: 'worker', image: 'busybox:stable', command: ['sleep', '3600'] }]
   replicas 2
-  selector 'role' => 'master','app' => 'redis'
-  labels ['aww=yiss','motha-freakin=breadcrumbs']
-  action [:destroy,:create]
+  selector 'app=workers'
 end
 ```

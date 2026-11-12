@@ -1,0 +1,241 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "cookbook-test"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "updated-pod",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "pause",
+            "image": "registry.k8s.io/pause:3.10"
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "updated-service",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "old": "yes"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ReplicationController",
+      "metadata": {
+        "name": "updated-controller",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "replicas": 0,
+        "selector": {
+          "app": "test"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "test"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "pause",
+                "image": "registry.k8s.io/pause:3.10"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "removed-pod",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "pause",
+            "image": "registry.k8s.io/pause:3.10"
+          }
+        ],
+        "terminationGracePeriodSeconds": 0
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "removed-service",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "old": "yes"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ReplicationController",
+      "metadata": {
+        "name": "removed-controller",
+        "namespace": "cookbook-test",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "replicas": 0,
+        "selector": {
+          "app": "test"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "test"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "pause",
+                "image": "registry.k8s.io/pause:3.10"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "cookbook-other"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "removed-pod",
+        "namespace": "cookbook-other",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "pause",
+            "image": "registry.k8s.io/pause:3.10"
+          }
+        ],
+        "terminationGracePeriodSeconds": 0
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "removed-service",
+        "namespace": "cookbook-other",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "old": "yes"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ReplicationController",
+      "metadata": {
+        "name": "removed-controller",
+        "namespace": "cookbook-other",
+        "labels": {
+          "old": "yes"
+        }
+      },
+      "spec": {
+        "replicas": 0,
+        "selector": {
+          "app": "test"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "test"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "pause",
+                "image": "registry.k8s.io/pause:3.10"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

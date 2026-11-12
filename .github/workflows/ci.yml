@@ -11,6 +11,11 @@ concurrency:
 
 jobs:
   lint-unit:
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+      statuses: write
     uses: sous-chefs/.github/.github/workflows/lint-unit.yml@9.0.1
 
   integration:
@@ -20,16 +25,20 @@ jobs:
       matrix:
         os:
           - almalinux-8
-          - amazonlinux-2
-          - debian-10
-          - debian-11
-          - centos-7
-          - centos-stream-8
+          - almalinux-9
+          - amazonlinux-2023
+          - centos-stream-9
+          - debian-12
+          - debian-13
           - fedora-latest
-          - ubuntu-18.04
-          - ubuntu-20.04
+          - opensuse-leap-16
+          - oraclelinux-8
+          - oraclelinux-9
           - rockylinux-8
-          - opensuse-leap-15
+          - rockylinux-9
+          - ubuntu-2004
+          - ubuntu-2204
+          - ubuntu-2404
         suite:
           - default
       fail-fast: false
@@ -38,11 +47,26 @@ jobs:
         uses: actions/checkout@v7
       - name: Install Chef
         uses: actionshub/chef-install@6.0.0
+      - name: Create Kubernetes test cluster
+        uses: helm/kind-action@v1.15.2
+        with:
+          version: v0.33.0
+          kubectl_version: v1.35.8
+          cluster_name: cookbook-kubernetes
+          node_image: kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0
+      - name: Prepare Kubernetes fixtures and client credentials
+        env:
+          KITCHEN_KUBECONFIG: ${{ runner.temp }}/kitchen-kubeconfig
+        run: |
+          kubectl --context kind-cookbook-kubernetes apply --server-side --field-manager=chef-kubernetes -f test/support/fixtures.json
+          kind get kubeconfig --internal --name cookbook-kubernetes > "$KITCHEN_KUBECONFIG"
+          chmod 600 "$KITCHEN_KUBECONFIG"
       - name: Dokken
         uses: actionshub/test-kitchen@3.0.0
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+          KITCHEN_KUBECONFIG: ${{ runner.temp }}/kitchen-kubeconfig
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
