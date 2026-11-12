@@ -8,7 +8,7 @@ The cookbook connects to an existing cluster; it does not install Kubernetes.
 * Chef Infra Client 17 or later.
 * A supported Ruby platform with the build tools needed by kubeclient's native dependencies.
 * An operator-controlled kubeconfig with permission to manage the selected resources and namespace.
-* An existing Kubernetes cluster exposing core/v1.
+* An existing Kubernetes cluster exposing core/v1 with server-side apply (stable since Kubernetes 1.22).
 
 Platform support remains independent of the cluster's operating system. Linux integration tests
 cover maintained Debian, Ubuntu, RHEL derivatives, Amazon Linux, Fedora and openSUSE images.

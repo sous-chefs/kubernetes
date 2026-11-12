@@ -52,6 +52,10 @@
 * Dokken has no `opensuse-leap-16` image. The verified vendor image `opensuse/leap:16.0`
   preserves current openSUSE-family client coverage. The cookbook needs no systemd daemon,
   so client containers can use a sleeping PID 1.
+* The protected-file workflow runs on opened, reopened and synchronize events. PR title/body
+  edits cannot change protected files; do not run this guard on `edited` events, where an
+  unrelated bot's body update can fail the action's event validation. Do not add that bot to
+  trusted authors or weaken protection on actual file changes.
 
 ## Sources
 
